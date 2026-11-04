@@ -1,5 +1,10 @@
 /* ONELIFE site scripts */
 (function(){
+  // 漢堡選單
+  var bg=document.querySelector('.burger');
+  if(bg){bg.addEventListener('click',function(){var o=document.body.classList.toggle('menu-open');bg.setAttribute('aria-expanded',o);bg.setAttribute('aria-label',o?'關閉選單':'開啟選單');});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.body.classList.contains('menu-open'))bg.click();});}
+
   // 表單送到 Google Apps Script（把下面這行換成你部署後的網址）
   var ENDPOINT = window.ONELIFE_FORM_ENDPOINT || '';
 
