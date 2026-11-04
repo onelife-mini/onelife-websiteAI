@@ -30,6 +30,10 @@
     });
   });
 
+  // 子選單展開／收合；點選單內連結後關閉選單
+  document.querySelectorAll('.mi-tog').forEach(function(t){t.addEventListener('click',function(){var m=t.parentNode;var o=m.classList.toggle('open');t.setAttribute('aria-expanded',o);});});
+  document.querySelectorAll('.menu a').forEach(function(a){a.addEventListener('click',function(){if(document.body.classList.contains('menu-open')&&bg)bg.click();});});
+
   // 案例篩選
   var fb=document.querySelectorAll('.filter button');
   fb.forEach(function(b){b.addEventListener('click',function(){
@@ -37,4 +41,6 @@
     var f=b.dataset.f;
     document.querySelectorAll('#caselist .card').forEach(function(c){c.classList.toggle('hide',f!=='all'&&c.dataset.c!==f)});
   })});
+  function hashFilter(){var h=location.hash.slice(1);var b=document.querySelector('.filter button[data-f="'+h+'"]');if(b){b.click();var t=document.querySelector('.filter');if(t)t.scrollIntoView({block:'start'});}}
+  hashFilter();window.addEventListener('hashchange',hashFilter);
 })();
